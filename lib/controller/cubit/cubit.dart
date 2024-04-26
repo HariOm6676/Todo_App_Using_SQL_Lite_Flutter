@@ -1,4 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqlite_flutter/controller/cubit/states.dart';
 
@@ -46,13 +49,14 @@ class TodoCubit extends Cubit<TodoStates> {
     String status = 'new',
   }) {
     database!.transaction((txn) async {
-      txn
+      await txn
           .rawInsert(
               'insert into tasks(title,date, time,description,status) values'
               '("$title","$date","$time","$description","$status")')
           .then((value) {
         // print(value);
         gettingDataFromDatabase(database);
+        print("Successful insertion $value");
         emit(InsertingIntoTodoDatabaseState());
       }).catchError((error) {
         print('an error when inserting into database');
@@ -61,7 +65,8 @@ class TodoCubit extends Cubit<TodoStates> {
   }
 
   List tasks = [];
-  void gettingDataFromDatabase(database) {
+  void gettingDataFromDatabase(database) async {
+    emit(LoadingGetDataFromDatabase());
     tasks = [];
     database!.rawQuery('select * from tasks').then((value) {
       value.forEach((element) {
@@ -69,6 +74,7 @@ class TodoCubit extends Cubit<TodoStates> {
       });
       print('our data is appearing');
       print(value);
+      print(tasks);
       emit(SuccessGettingDataFromDatabaseState());
     }).catchError((error) {
       print(
@@ -109,5 +115,31 @@ class TodoCubit extends Cubit<TodoStates> {
     }).catchError((error) {
       print('an error while deteing the data');
     });
+  }
+
+  void changeLanguageToArabic(BuildContext context) {
+    if (EasyLocalization.of(context)!.locale == const Locale('en', 'US')) {
+      context.locale = const Locale('ar', 'EG');
+    }
+    emit(ChangeLanguageToArabicState());
+  }
+
+  void changeLanguageToEnglish(BuildContext context) {
+    if (EasyLocalization.of(context)!.locale == const Locale('ar', 'EG')) {
+      context.locale = const Locale('en', 'US');
+    }
+    emit(ChangeLanguageToEnglishState());
+  }
+
+  bool isDark = false;
+  void changeThemeMode({bool? darkMode}) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (darkMode != null) {
+      isDark = darkMode;
+    } else {
+      isDark = !isDark;
+      sharedPreferences.setBool("isDark", isDark);
+    }
+    emit(ChangeAppModeState());
   }
 }

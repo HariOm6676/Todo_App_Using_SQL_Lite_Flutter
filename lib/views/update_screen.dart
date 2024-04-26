@@ -5,17 +5,44 @@ import 'package:sqlite_flutter/controller/cubit/cubit.dart';
 import 'package:sqlite_flutter/controller/cubit/states.dart';
 import 'package:sqlite_flutter/shared/component.dart';
 
-class AddTaskScreen extends StatelessWidget {
+class UpdateTaskScreen extends StatefulWidget {
+  final int id;
+  
+  var title;
+  
+  var date;
+  
+  var time;
+  
+  var des;
+  UpdateTaskScreen({Key? key,
+    required this.id,
+    required this.title,
+    required this.date,
+    required this.time,
+    required this.des,});
+
+
+  @override
+  State<UpdateTaskScreen> createState() => _UpdateTaskScreenState();
+}
+
+class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController timeController = TextEditingController();
+
   TextEditingController dateController = TextEditingController();
+
   TextEditingController desController = TextEditingController();
+
   final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<TodoCubit, TodoStates>(
       listener: (BuildContext context, state) {
-        if (state is InsertingIntoTodoDatabaseState) {
+        if (state is SuccessGettingDataFromDatabaseState) {
           Navigator.pop(context);
         }
       },
@@ -23,7 +50,7 @@ class AddTaskScreen extends StatelessWidget {
         var cubit = TodoCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text('Add Your Task'.tr()),
+            title: Text('Update Your Task'.tr()),
           ),
           body: Form(
             key: _formKey,
@@ -118,16 +145,17 @@ class AddTaskScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(25.0)),
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
-                        cubit.insertToDatabase(
+                        cubit.updateDataIntoDatabase(
                             title: titleController.text,
                             date: dateController.text,
                             time: timeController.text,
-                            description: desController.text);
+                            description: desController.text,
+                            id: widget.id);
                       }
                     },
                     minWidth: double.infinity,
                     color: Colors.deepOrange,
-                    child: Text('Add Task'.tr()),
+                    child: Text('Update Task'.tr()),
                   ),
                 ],
               ),

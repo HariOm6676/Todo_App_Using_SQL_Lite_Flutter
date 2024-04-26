@@ -1,0 +1,22 @@
+{
+    "Settings": "إعدادات",
+    "Arabic": "عربي",
+    "English": "إنجليزي",
+    "Change your Language": "تغيير لغتك",
+    "Add Your Task": "أضف مهمتك",
+    "Please add your title": "الرجاء إضافة عنوانك",
+    "Title": "عنوان",
+    "Add Your Title": "أضف عنوانك",
+    "Please add your time": "من فضلك أضف وقتك",
+    "Time": "وقت",
+    "Add Your Time": "أضف وقتك",
+    "Please add your Date": "الرجاء إضافة التاريخ الخاص بك",
+    "Date": "تاريخ",
+    "Add Your Date": "أضف تاريخك",
+    "Please add your Description": "الرجاء إضافة الوصف الخاص بك",
+    "Description": "وصف،",
+    "Add Your Description": "أضف الوصف الخاص بك",
+    "Add Task": "إضافة مهمة",
+    "My Tasks": "مهامي",
+    "There is no task here": "لا توجد مهمة هنا"
+}

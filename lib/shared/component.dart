@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,9 @@ Widget CustomTextFormFeild({
       maxLines: lines,
       onTap: onTap,
       decoration: InputDecoration(
-          labelText: label,
+          labelText: label.tr(),
           prefixIcon: Icon(prefixIcon),
-          hintText: hintText,
+          hintText: hintText.tr(),
           isDense: true,
           enabledBorder:
               OutlineInputBorder(borderRadius: BorderRadius.circular(5.0)),
