@@ -6,6 +6,7 @@ import 'package:sqlite_flutter/controller/cubit/states.dart';
 import 'package:sqlite_flutter/shared/component.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  AddTaskScreen({Key? key}) : super(key: key);
   TextEditingController titleController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -15,7 +16,7 @@ class AddTaskScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<TodoCubit, TodoStates>(
       listener: (BuildContext context, state) {
-        if (state is InsertingIntoTodoDatabaseState) {
+        if (state is SuccessInsertToDatabaseState) {
           Navigator.pop(context);
         }
       },
@@ -38,9 +39,9 @@ class AddTaskScreen extends StatelessWidget {
                         return 'Please add your title'.tr();
                       }
                     },
-                    label: 'Title',
+                    label: 'Title'.tr(),
                     prefixIcon: Icons.title,
-                    hintText: 'Add Your Title',
+                    hintText: 'Add Your Title'.tr(),
                   ),
                   const SizedBox(
                     height: 10.0,
@@ -61,10 +62,11 @@ class AddTaskScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return 'Please add your time'.tr();
                       }
+                      return null;
                     },
-                    label: 'Time',
+                    label: 'Time'.tr(),
                     prefixIcon: Icons.watch_later_outlined,
-                    hintText: 'Add Your Time',
+                    hintText: 'Add Your Time'.tr(),
                   ),
                   const SizedBox(
                     height: 10.0,
@@ -91,7 +93,7 @@ class AddTaskScreen extends StatelessWidget {
                     },
                     label: 'Date',
                     prefixIcon: Icons.calendar_view_day,
-                    hintText: 'Add Your Date',
+                    hintText: 'Add Your Date'.tr(),
                   ),
                   const SizedBox(
                     height: 10.0,
@@ -107,7 +109,7 @@ class AddTaskScreen extends StatelessWidget {
                     },
                     label: 'Description',
                     prefixIcon: Icons.note,
-                    hintText: 'Add Your Description',
+                    hintText: 'Add Your Description'.tr(),
                   ),
                   const SizedBox(
                     height: 10.0,

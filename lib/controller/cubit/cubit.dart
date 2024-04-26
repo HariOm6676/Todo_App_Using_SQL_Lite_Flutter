@@ -16,7 +16,7 @@ class TodoCubit extends Cubit<TodoStates> {
   void createDatabase() {
     //db Database
 
-    openDatabase('databasetodo.db', version: 1, onCreate: (database, version) {
+    openDatabase('data.db', version: 1, onCreate: (database, version) {
       // here our database is create (only for the first time)
       // if we don't the path file name
       print('The Databse is created');
@@ -49,7 +49,7 @@ class TodoCubit extends Cubit<TodoStates> {
     String status = 'new',
   }) {
     database!.transaction((txn) async {
-      await txn
+      txn
           .rawInsert(
               'insert into tasks(title,date, time,description,status) values'
               '("$title","$date","$time","$description","$status")')
@@ -57,7 +57,7 @@ class TodoCubit extends Cubit<TodoStates> {
         // print(value);
         gettingDataFromDatabase(database);
         print("Successful insertion $value");
-        emit(InsertingIntoTodoDatabaseState());
+        emit(SuccessInsertToDatabaseState());
       }).catchError((error) {
         print('an error when inserting into database');
       });
@@ -66,16 +66,16 @@ class TodoCubit extends Cubit<TodoStates> {
 
   List tasks = [];
   void gettingDataFromDatabase(database) async {
-    emit(LoadingGetDataFromDatabase());
+    emit(LoadingGetDataFromDatabaseState());
     tasks = [];
     database!.rawQuery('select * from tasks').then((value) {
-      value.forEach((element) {
-        tasks.add(element);
-      });
+      for (var i in value) {
+        tasks.add(i);
+      }
       print('our data is appearing');
-      print(value);
-      print(tasks);
       emit(SuccessGettingDataFromDatabaseState());
+      // print('$value');
+      print(tasks);
     }).catchError((error) {
       print(
           "An error in getting the data from the database ${error.toString()}");
@@ -100,6 +100,7 @@ class TodoCubit extends Cubit<TodoStates> {
     )
         .then((value) {
       print('$value Updating data success');
+      emit(SuccessUpdatingDataFromDatabaseState());
       gettingDataFromDatabase(database);
     }).catchError((error) {
       print("Error when updating data");
@@ -111,6 +112,7 @@ class TodoCubit extends Cubit<TodoStates> {
   void deleteDataFromDatabase({required int id}) {
     database!.rawDelete('delete from tasks where id=?', [id]).then((value) {
       print('$value deleted successfully');
+      emit(DeletingDataFromDatabaseState());
       gettingDataFromDatabase(database);
     }).catchError((error) {
       print('an error while deteing the data');
@@ -129,6 +131,14 @@ class TodoCubit extends Cubit<TodoStates> {
       context.locale = const Locale('en', 'US');
     }
     emit(ChangeLanguageToEnglishState());
+  }
+
+  void changeLanguageToHindi(BuildContext context) {
+    if (EasyLocalization.of(context)!.locale == const Locale('ar', 'EG') ||
+        EasyLocalization.of(context)!.locale == const Locale('en', 'US')) {
+      context.locale = const Locale('hi', 'EG');
+    }
+    emit(ChangeLanguageToHindiState());
   }
 
   bool isDark = false;

@@ -4,14 +4,20 @@ class InitialTodoState extends TodoStates {}
 
 class CreateTodoDatabaseState extends TodoStates {}
 
-class InsertingIntoTodoDatabaseState extends TodoStates {}
+class SuccessInsertToDatabaseState extends TodoStates {}
 
 class SuccessGettingDataFromDatabaseState extends TodoStates {}
 
-class LoadingGetDataFromDatabase extends TodoStates {}
+class LoadingGetDataFromDatabaseState extends TodoStates {}
 
-class ChangeLanguageToArabicState extends TodoStates {}
+class DeletingDataFromDatabaseState extends TodoStates {}
+
+class SuccessUpdatingDataFromDatabaseState extends TodoStates {}
 
 class ChangeLanguageToEnglishState extends TodoStates {}
 
-class ChangeAppModeState extends TodoStates{}
+class ChangeLanguageToArabicState extends TodoStates {}
+
+class ChangeLanguageToHindiState extends TodoStates {}
+
+class ChangeAppModeState extends TodoStates {}
