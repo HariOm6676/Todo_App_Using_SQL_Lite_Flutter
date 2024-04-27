@@ -120,14 +120,16 @@ class TodoCubit extends Cubit<TodoStates> {
   }
 
   void changeLanguageToArabic(BuildContext context) {
-    if (EasyLocalization.of(context)!.locale == const Locale('en', 'US')) {
+    if (EasyLocalization.of(context)!.locale == const Locale('en', 'US') ||
+        EasyLocalization.of(context)!.locale == const Locale('hi', 'IN')) {
       context.locale = const Locale('ar', 'EG');
     }
     emit(ChangeLanguageToArabicState());
   }
 
   void changeLanguageToEnglish(BuildContext context) {
-    if (EasyLocalization.of(context)!.locale == const Locale('ar', 'EG')) {
+    if (EasyLocalization.of(context)!.locale == const Locale('ar', 'EG') ||
+        EasyLocalization.of(context)!.locale == const Locale('hi', 'IN')) {
       context.locale = const Locale('en', 'US');
     }
     emit(ChangeLanguageToEnglishState());
@@ -136,7 +138,7 @@ class TodoCubit extends Cubit<TodoStates> {
   void changeLanguageToHindi(BuildContext context) {
     if (EasyLocalization.of(context)!.locale == const Locale('ar', 'EG') ||
         EasyLocalization.of(context)!.locale == const Locale('en', 'US')) {
-      context.locale = const Locale('hi', 'EG');
+      context.locale = const Locale('hi', 'IN');
     }
     emit(ChangeLanguageToHindiState());
   }

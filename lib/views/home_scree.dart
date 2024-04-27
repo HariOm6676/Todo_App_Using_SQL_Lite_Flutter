@@ -7,6 +7,19 @@ import 'package:sqlite_flutter/controller/cubit/states.dart';
 import 'package:sqlite_flutter/views/add_task_screen.dart';
 import 'package:sqlite_flutter/views/drawer_screen.dart';
 import 'package:sqlite_flutter/views/update_screen.dart';
+import 'dart:math';
+
+List<String> backgroundImagePaths = [
+  'assets/images/image1.jpg',
+  'assets/images/image2.jpg',
+  'assets/images/image3.jpg',
+  // Add more image paths as needed
+];
+
+String getRandomImagePath() {
+  final Random random = Random();
+  return backgroundImagePaths[random.nextInt(backgroundImagePaths.length)];
+}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

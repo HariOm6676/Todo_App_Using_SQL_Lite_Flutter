@@ -34,7 +34,7 @@ class DrawerScreen extends StatelessWidget {
               MaterialButton(
                 color: Colors.green,
                 onPressed: () {
-                  cubit.changeLanguageToArabic(context);
+                  cubit.changeLanguageToHindi(context);
                 },
                 child: Text('Arbic'.tr()),
               ),

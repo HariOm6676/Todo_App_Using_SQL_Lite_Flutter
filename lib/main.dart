@@ -23,6 +23,7 @@ void main() async {
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('ar', 'EG'),
+          Locale('hi','IN')
         ],
         fallbackLocale: const Locale('en', 'US'),
         path: 'assets/transilations'),
