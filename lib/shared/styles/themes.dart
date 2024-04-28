@@ -65,7 +65,7 @@ ThemeData darkTheme = ThemeData(
     color: Colors.white,
   )),
   cardTheme: CardTheme(
-    color: Color(0xff333739),
+    color: Color.fromARGB(255, 100, 104, 105),
     elevation: 5.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadiusDirectional.circular(5.0),

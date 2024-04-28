@@ -15,6 +15,7 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   bool isDark = sharedPreferences.getBool("isDark") ?? false;
+
   runApp(
     EasyLocalization(
         child: MyApp(
@@ -23,7 +24,7 @@ void main() async {
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('ar', 'EG'),
-          Locale('hi','IN')
+          Locale('hi', 'IN')
         ],
         fallbackLocale: const Locale('en', 'US'),
         path: 'assets/transilations'),
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, state) {
           var cubit = TodoCubit.get(context);
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
@@ -60,7 +62,7 @@ class MyApp extends StatelessWidget {
             themeMode: cubit.isDark ? ThemeMode.dark : ThemeMode.light,
             home: AnimatedSplashScreen(
               splash: Image.asset(
-                'assets/images/download.png',
+                'assets/images/download.jpg',
                 fit: BoxFit.cover,
               ),
               nextScreen: const HomeScreen(),

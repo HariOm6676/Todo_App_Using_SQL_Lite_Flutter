@@ -13,10 +13,11 @@ class TodoCubit extends Cubit<TodoStates> {
   // create database table
   //create database file
   Database? database;
+  
   void createDatabase() {
     //db Database
 
-    openDatabase('data.db', version: 1, onCreate: (database, version) {
+    openDatabase('data1.db', version: 1, onCreate: (database, version) {
       // here our database is create (only for the first time)
       // if we don't the path file name
       print('The Databse is created');
@@ -142,6 +143,8 @@ class TodoCubit extends Cubit<TodoStates> {
     }
     emit(ChangeLanguageToHindiState());
   }
+
+
 
   bool isDark = false;
   void changeThemeMode({bool? darkMode}) async {

@@ -36,10 +36,12 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  google_fonts: ^6.2.1
   intl: ^0.18.1
   page_transition: ^2.1.0
   shared_preferences: ^2.2.3
   sqflite: ^2.3.3
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_lints: ^3.0.0

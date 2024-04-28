@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:sqlite_flutter/controller/cubit/cubit.dart';
 import 'package:sqlite_flutter/controller/cubit/states.dart';
 import 'package:sqlite_flutter/shared/component.dart';
@@ -24,7 +25,28 @@ class AddTaskScreen extends StatelessWidget {
         var cubit = TodoCubit.get(context);
         return Scaffold(
           appBar: AppBar(
-            title: Text('Add Your Task'.tr()),
+            title: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: !cubit.isDark ? Colors.black : Colors.white,
+                  strokeAlign: BorderSide.strokeAlignCenter,
+                  width: 2,
+                ), // Border color
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0), // Adjust padding as needed
+                child: Text(
+                  'Add Your Task'.tr(),
+                  style: GoogleFonts.robotoCondensed(
+                    textStyle: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: !cubit.isDark ? Colors.black : Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
           body: Form(
             key: _formKey,
