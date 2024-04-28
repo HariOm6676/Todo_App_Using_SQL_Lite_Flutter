@@ -17,7 +17,7 @@ class UpdateTaskScreen extends StatefulWidget {
 
   var des;
   UpdateTaskScreen({
-    Key? key,
+    super.key,
     required this.id,
     required this.title,
     required this.date,
@@ -87,6 +87,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                       if (value!.isEmpty) {
                         return 'Please add your title'.tr();
                       }
+                      return null;
                     },
                     label: 'Title',
                     prefixIcon: Icons.title,
@@ -111,6 +112,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                       if (value!.isEmpty) {
                         return 'Please add your time'.tr();
                       }
+                      return null;
                     },
                     label: 'Time',
                     prefixIcon: Icons.watch_later_outlined,
@@ -138,6 +140,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                       if (value!.isEmpty) {
                         return 'Please add your Date'.tr();
                       }
+                      return null;
                     },
                     label: 'Date',
                     prefixIcon: Icons.calendar_view_day,
@@ -154,6 +157,7 @@ class _UpdateTaskScreenState extends State<UpdateTaskScreen> {
                       if (value!.isEmpty) {
                         return 'Please add your Description'.tr();
                       }
+                      return null;
                     },
                     label: 'Description',
                     prefixIcon: Icons.note,

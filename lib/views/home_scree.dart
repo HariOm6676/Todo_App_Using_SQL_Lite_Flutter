@@ -63,7 +63,7 @@ class HomeScreen extends StatelessWidget {
         builder: (BuildContext context, Object? state) {
           print(cubit.tasks);
           return Scaffold(
-            drawer: CustomDrawer(),
+            drawer: const CustomDrawer(),
             // Drawer(
             //   child: DrawerScreen(),
             // ),
@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
             ),
             body: Stack(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity, // Set width to fill the entire screen
                   height: double.infinity,
                   child: Image.asset(
@@ -164,13 +164,13 @@ class HomeScreen extends StatelessWidget {
                                               cubit.tasks[index]['title'],
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyText1,
+                                                  .bodyLarge,
                                             ),
                                             Text(
                                               cubit.tasks[index]['time'],
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyText1,
+                                                  .bodyLarge,
                                             ),
                                             IconButton(
                                               onPressed: () {
@@ -178,7 +178,7 @@ class HomeScreen extends StatelessWidget {
                                                     id: cubit.tasks[index]
                                                         ['id']);
                                               },
-                                              icon: Icon(Icons.delete),
+                                              icon: const Icon(Icons.delete),
                                             ),
                                           ],
                                         ),
@@ -189,7 +189,7 @@ class HomeScreen extends StatelessWidget {
                                             cubit.tasks[index]['description'],
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText1,
+                                                .bodyLarge,
                                           ),
                                         )
                                       ],
@@ -209,7 +209,7 @@ class HomeScreen extends StatelessWidget {
                                   'There is no task here'.tr(),
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyText1!
+                                      .bodyLarge!
                                       .copyWith(color: Colors.deepOrange),
                                 )
                               ],

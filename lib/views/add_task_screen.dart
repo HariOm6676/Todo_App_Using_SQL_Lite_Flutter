@@ -7,7 +7,7 @@ import 'package:sqlite_flutter/controller/cubit/states.dart';
 import 'package:sqlite_flutter/shared/component.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({Key? key}) : super(key: key);
+  AddTaskScreen({super.key});
   TextEditingController titleController = TextEditingController();
   TextEditingController timeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
@@ -60,6 +60,7 @@ class AddTaskScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return 'Please add your title'.tr();
                       }
+                      return null;
                     },
                     label: 'Title'.tr(),
                     prefixIcon: Icons.title,
@@ -112,6 +113,7 @@ class AddTaskScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return 'Please add your Date'.tr();
                       }
+                      return null;
                     },
                     label: 'Date',
                     prefixIcon: Icons.calendar_view_day,
@@ -128,6 +130,7 @@ class AddTaskScreen extends StatelessWidget {
                       if (value!.isEmpty) {
                         return 'Please add your Description'.tr();
                       }
+                      return null;
                     },
                     label: 'Description',
                     prefixIcon: Icons.note,

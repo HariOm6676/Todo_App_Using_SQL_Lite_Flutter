@@ -18,15 +18,8 @@ class CustomDrawer extends StatelessWidget {
     }
   }
 
-  double calculateFontSize(BuildContext context, double availableWidth,
-      double availableHeight, String text) {
-    // For example, let's say you want the font size to be proportional to the available width
-    // You can define your own logic here based on your requirements
-    double fontSize =
-        availableWidth * 0.1; // Adjust this multiplier according to your needs
-
-    // You can also add logic to adjust font size based on available height or text length
-
+  double calculateFontSize(BuildContext context, double availableWidth) {
+    double fontSize = availableWidth * 0.05;
     return fontSize;
   }
 
@@ -77,8 +70,7 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
-
+    double fontSize = calculateFontSize(context, screenWidth);
     return BlocConsumer<TodoCubit, TodoStates>(
       builder: (BuildContext context, Object? state) {
         var cubit = TodoCubit.get(context);
@@ -90,6 +82,7 @@ class CustomDrawer extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 children: [
                   Container(
+                    padding: EdgeInsets.all(2),
                     height: 250,
                     color: Colors.white,
                     child: Column(
@@ -110,11 +103,7 @@ class CustomDrawer extends StatelessWidget {
                             "\"If Change Is Need\nMy Blood And Sweat Will Feed!\""
                                 .tr(),
                             style: GoogleFonts.dhurjati(
-                              fontSize: Localizations.localeOf(context)
-                                          .languageCode ==
-                                      'hi'
-                                  ? 16
-                                  : 22,
+                              fontSize: fontSize,
                               fontWeight: FontWeight.bold,
                               color: Color.fromRGBO(128, 0, 0, 1),
                             ),
@@ -138,7 +127,7 @@ class CustomDrawer extends StatelessWidget {
                                 child: CircleAvatar(
                                   backgroundImage:
                                       AssetImage("assets/images/profile.jpg"),
-                                  maxRadius: 51,
+                                  maxRadius: fontSize * 2,
                                 ),
                               ),
                               Container(
@@ -169,7 +158,7 @@ class CustomDrawer extends StatelessWidget {
                                           Text(
                                             "Hari Om Shukla".tr(),
                                             style: GoogleFonts.libreBaskerville(
-                                              fontSize: 15.0,
+                                              fontSize: fontSize * 0.73,
                                               fontWeight: FontWeight.bold,
                                               color:
                                                   Color.fromRGBO(128, 0, 0, 1),
@@ -194,7 +183,7 @@ class CustomDrawer extends StatelessWidget {
                                           Text(
                                             "Flutter Developer".tr(),
                                             style: GoogleFonts.dhurjati(
-                                              fontSize: 20.0,
+                                              fontSize: fontSize,
                                               fontWeight: FontWeight.normal,
                                               color:
                                                   Color.fromRGBO(65, 0, 147, 1),
@@ -216,12 +205,7 @@ class CustomDrawer extends StatelessWidget {
                                           Text(
                                             "PSIT Kanpur".tr(),
                                             style: GoogleFonts.dhurjati(
-                                              fontSize: Localizations.localeOf(
-                                                              context)
-                                                          .languageCode ==
-                                                      'hi'
-                                                  ? 16
-                                                  : 20,
+                                              fontSize: fontSize,
                                               // fontWeight: FontWeight.bold,
                                               color:
                                                   Color.fromRGBO(65, 0, 147, 1),
@@ -243,8 +227,7 @@ class CustomDrawer extends StatelessWidget {
                   _buildListTile(
                     context,
                     icon: CupertinoIcons.home,
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "Home"),
+                    fontsize: fontSize,
                     title: "Home".tr(),
                     onTap: () {
                       Navigator.pop(context);
@@ -253,8 +236,7 @@ class CustomDrawer extends StatelessWidget {
                   _buildListTile(
                     context,
                     icon: CupertinoIcons.profile_circled,
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "Linkedin Profile"),
+                    fontsize: fontSize,
                     title: "Linkedin Profile".tr(),
                     onTap: () {
                       _launchUrl(
@@ -265,16 +247,14 @@ class CustomDrawer extends StatelessWidget {
                     context,
                     icon: CupertinoIcons.mail,
                     title: "Email to Developer".tr(),
-                    fontsize: calculateFontSize(context, screenWidth,
-                        screenHeight, "Email To Developer"),
+                    fontsize: fontSize,
                     onTap: _sendEmail,
                   ),
                   _buildListTile(
                     context,
                     icon: CupertinoIcons.bag_fill_badge_plus,
                     title: "My Resume".tr(),
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "My Resume"),
+                    fontsize: fontSize,
                     onTap: () {
                       _launchUrl(
                           'https://drive.google.com/file/d/1fYq0wc9uSL3yECuaO6znWlMo_siDj_pM/view?usp=sharing');
@@ -284,8 +264,7 @@ class CustomDrawer extends StatelessWidget {
                     context,
                     icon: CupertinoIcons.collections,
                     title: "My GitHub".tr(),
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "My Github"),
+                    fontsize: fontSize,
                     onTap: () {
                       _launchUrl('https://github.com/HariOm6676');
                     },
@@ -293,8 +272,7 @@ class CustomDrawer extends StatelessWidget {
                   _buildListTile(
                     context,
                     icon: CupertinoIcons.globe,
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "In Hindi"),
+                    fontsize: fontSize,
                     title: "In Hindi".tr(),
                     onTap: () {
                       cubit.changeLanguageToHindi(context);
@@ -304,8 +282,7 @@ class CustomDrawer extends StatelessWidget {
                     context,
                     icon: CupertinoIcons.globe,
                     title: "In Arabic".tr(),
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "In Arabic"),
+                    fontsize: fontSize,
                     onTap: () {
                       cubit.changeLanguageToArabic(context);
                     },
@@ -314,8 +291,7 @@ class CustomDrawer extends StatelessWidget {
                     context,
                     icon: CupertinoIcons.globe,
                     title: "In English".tr(),
-                    fontsize: calculateFontSize(
-                        context, screenWidth, screenHeight, "In English"),
+                    fontsize: fontSize,
                     onTap: () {
                       cubit.changeLanguageToEnglish(context);
                     },

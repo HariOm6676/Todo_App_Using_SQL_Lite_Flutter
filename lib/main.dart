@@ -18,24 +18,24 @@ void main() async {
 
   runApp(
     EasyLocalization(
-        child: MyApp(
-          isDark: isDark,
-        ),
         supportedLocales: const [
           Locale('en', 'US'),
           Locale('ar', 'EG'),
           Locale('hi', 'IN')
         ],
         fallbackLocale: const Locale('en', 'US'),
-        path: 'assets/transilations'),
+        path: 'assets/transilations',
+        child: MyApp(
+          isDark: isDark,
+        )),
   );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({
-    Key? key,
+    super.key,
     required this.isDark,
-  }) : super(key: key);
+  });
   final bool isDark;
 
   // This widget is the root of your application.

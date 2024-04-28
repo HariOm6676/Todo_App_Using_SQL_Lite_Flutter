@@ -23,7 +23,7 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.deepOrange,
   ),
   textTheme: const TextTheme(
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w600,
     color: Colors.black,
@@ -59,13 +59,13 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: Colors.deepOrange,
   ),
   textTheme: const TextTheme(
-      bodyText1: TextStyle(
+      bodyLarge: TextStyle(
     fontSize: 18.0,
     fontWeight: FontWeight.w600,
     color: Colors.white,
   )),
   cardTheme: CardTheme(
-    color: Color.fromARGB(255, 100, 104, 105),
+    color: const Color.fromARGB(255, 100, 104, 105),
     elevation: 5.0,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadiusDirectional.circular(5.0),
